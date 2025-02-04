@@ -14,6 +14,7 @@ class EarthquakeAdapter (var earthquakeList: List<EarthquakeListActivity>) :
      * provide a reference to the type of view that you are using
      * (custom ViewHolder)
      */
+
     //TODO: put all of the widgets and wire them
     class ViewHolder(view: View) : RecyclerView.ViewHolder(view){
         val textViewMagnitude: TextView
