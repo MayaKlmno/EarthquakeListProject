@@ -4,6 +4,7 @@ import android.os.Bundle
 import android.util.Log
 import android.view.inputmethod.InputBinding
 import androidx.appcompat.app.AppCompatActivity
+import androidx.recyclerview.widget.RecyclerView
 import com.example.earthquakelistproject.databinding.ActivityEarthquakeListBinding
 import com.google.gson.Gson
 import retrofit2.Call
@@ -31,6 +32,8 @@ class EarthquakeListActivity : AppCompatActivity() {
 
         val earthquakeCall = earthquakeService.getAllDayEarthquakeData()
 
+        //val recyclerView = findViewById<RecyclerView>(R.id.recyclerView)
+
         earthquakeCall.enqueue(object: Callback<FeatureCollection> {
             override fun onResponse(call: Call<FeatureCollection>, response: Response<FeatureCollection>) {
                 TODO("Not yet implemented")
@@ -38,6 +41,8 @@ class EarthquakeListActivity : AppCompatActivity() {
                 // create your recyclerview adapter HERE
                 //response.body() --> gives you the actual data (in this case the FeatureCollection)
                 // if you want to see the json that came back --> response.raw()
+
+
             }
 
             override fun onFailure(call: Call<FeatureCollection>, t: Throwable) {
