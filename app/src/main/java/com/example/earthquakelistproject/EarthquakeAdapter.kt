@@ -7,7 +7,7 @@ import android.widget.TextView
 import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.recyclerview.widget.RecyclerView
 
-class EarthquakeAdapter (var earthquakeList: List<Properties>) :
+class EarthquakeAdapter (var earthquakeList: List<Feature>) :
         RecyclerView.Adapter<EarthquakeAdapter.ViewHolder>() {
 
     /**

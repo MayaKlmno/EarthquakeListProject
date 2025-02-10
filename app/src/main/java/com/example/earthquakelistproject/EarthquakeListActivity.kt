@@ -10,11 +10,14 @@ import com.google.gson.Gson
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
+import androidx.recyclerview.widget.LinearLayoutManager
+
 
 //TODO: set up viewbinding
 
 class EarthquakeListActivity : AppCompatActivity() {
     private lateinit var binding: ActivityEarthquakeListBinding
+    private lateinit var adapter: EarthquakeAdapter
 
     companion object{
         val TAG = "HeroListActivity"
@@ -35,12 +38,19 @@ class EarthquakeListActivity : AppCompatActivity() {
         //val recyclerView = findViewById<RecyclerView>(R.id.recyclerView)
 
         earthquakeCall.enqueue(object: Callback<FeatureCollection> {
+
             override fun onResponse(call: Call<FeatureCollection>, response: Response<FeatureCollection>) {
-                TODO("Not yet implemented")
+                //TODO("Not yet implemented")
                 // This is where the code goes for when you get your data
                 // create your recyclerview adapter HERE
                 //response.body() --> gives you the actual data (in this case the FeatureCollection)
                 // if you want to see the json that came back --> response.raw()
+                val earthquake = response.body()!!
+                adapter = EarthquakeAdapter(earthquake.features)
+
+                binding.recyclerViewEarthquakeListEarthquakes.adapter = adapter
+
+                binding.recyclerViewEarthquakeListEarthquakes.layoutManager = LinearLayoutManager(this)
 
 
             }
