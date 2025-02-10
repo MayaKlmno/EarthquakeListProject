@@ -7,7 +7,7 @@ import android.widget.TextView
 import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.recyclerview.widget.RecyclerView
 
-class EarthquakeAdapter (var earthquakeList: List<EarthquakeListActivity>) :
+class EarthquakeAdapter (var earthquakeList: List<Properties>) :
         RecyclerView.Adapter<EarthquakeAdapter.ViewHolder>() {
 
     /**
@@ -39,13 +39,18 @@ class EarthquakeAdapter (var earthquakeList: List<EarthquakeListActivity>) :
         return ViewHolder(view)
     }
 
-   /*
+    override fun getItemCount(): Int {
+        TODO("Not yet implemented")
+        //return
+    }
+
+
     // Replace the contents of a view (invoked by the layout manager)
     // put onClickListeners here if needed
     override fun onBindViewHolder(viewHolder: ViewHolder, position: Int) {
         // get elements from your dataset at this position
         // and replace the contents of the view with that element
-        viewHolder.textViewMagnitude.text = earthquakeListActivity[position]
+        viewHolder.textViewMagnitude.text = earthquakeList[position].toString()
     }
-    */
+
 }
