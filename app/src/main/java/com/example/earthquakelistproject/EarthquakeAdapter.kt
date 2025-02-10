@@ -40,8 +40,7 @@ class EarthquakeAdapter (var earthquakeList: List<Properties>) :
     }
 
     override fun getItemCount(): Int {
-        TODO("Not yet implemented")
-        //return
+        return earthquakeList.size
     }
 
 
