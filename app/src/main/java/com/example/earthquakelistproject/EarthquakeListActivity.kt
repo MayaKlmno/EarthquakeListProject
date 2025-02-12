@@ -36,23 +36,22 @@ class EarthquakeListActivity : AppCompatActivity() {
         val earthquakeCall = earthquakeService.getAllDayEarthquakeData()
 
         //val recyclerView = findViewById<RecyclerView>(R.id.recyclerView)
-        binding.recyclerViewEarthquakeListEarthquakes.layoutManager = LinearLayoutManager(this)
+
 
         earthquakeCall.enqueue(object: Callback<FeatureCollection> {
 
             override fun onResponse(call: Call<FeatureCollection>, response: Response<FeatureCollection>) {
-                //TODO("Not yet implemented")
+                //TODO:
                 // This is where the code goes for when you get your data
                 // create your recyclerview adapter HERE
-                //response.body() --> gives you the actual data (in this case the FeatureCollection)
+                response.body() //--> gives you the actual data (in this case the FeatureCollection)
                 // if you want to see the json that came back --> response.raw()
                 val earthquake = response.body()!!
                 adapter = EarthquakeAdapter(earthquake.features)
 
                 binding.recyclerViewEarthquakeListEarthquakes.adapter = adapter
 
-
-
+                binding.recyclerViewEarthquakeListEarthquakes.layoutManager = LinearLayoutManager(this@EarthquakeListActivity)
 
                 /*
                 // Naming the action bar
