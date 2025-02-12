@@ -50,6 +50,22 @@ class EarthquakeAdapter (var earthquakeList: List<Feature>) :
         // get elements from your dataset at this position
         // and replace the contents of the view with that element
         viewHolder.textViewMagnitude.text = earthquakeList[position].toString()
+
+
+        // Example Code:
+        // This is the code like not the specific code, but you have to tweak it
+        // you can keep on using the .thenBy{} and keep on like comparing it
+            // over and over and over again
+        //adapter.dataset = adapter.dataSet.sortedWith(compareBy<Feature> {it.properties.title}.thenBy{it.properties.time})
+
+
+        /*
+        when {
+            magnitude < 6.5 -> {
+                 holder.magTextView.setTextColor(context.resources.getColor(R.color.significant, context.theme))
+                 holder.magTextView.setCompoundDrawablesRelativeWithIntrinsicBounds(0, 0 ,0 ,0)
+            }
+        */
     }
 
 }

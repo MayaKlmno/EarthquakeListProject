@@ -36,6 +36,7 @@ class EarthquakeListActivity : AppCompatActivity() {
         val earthquakeCall = earthquakeService.getAllDayEarthquakeData()
 
         //val recyclerView = findViewById<RecyclerView>(R.id.recyclerView)
+        binding.recyclerViewEarthquakeListEarthquakes.layoutManager = LinearLayoutManager(this)
 
         earthquakeCall.enqueue(object: Callback<FeatureCollection> {
 
@@ -50,7 +51,17 @@ class EarthquakeListActivity : AppCompatActivity() {
 
                 binding.recyclerViewEarthquakeListEarthquakes.adapter = adapter
 
-                binding.recyclerViewEarthquakeListEarthquakes.layoutManager = LinearLayoutManager(this)
+
+
+
+                /*
+                // Naming the action bar
+                if(response.body[] != null){
+                    supportActionBar?.title = "Earthquake App"
+                    supportActionBar?.subtitle = response.body()?.metadata?.title
+                }
+
+                 */
 
 
             }
@@ -58,6 +69,8 @@ class EarthquakeListActivity : AppCompatActivity() {
             override fun onFailure(call: Call<FeatureCollection>, t: Throwable) {
                 Log.d("EarthquakeList", "OnFailure: ${t.message}") // similar to the soundboards
             }
+
+
 
         })
         // if you try creating your adapter here, we can't guarantee that the network call has finished
