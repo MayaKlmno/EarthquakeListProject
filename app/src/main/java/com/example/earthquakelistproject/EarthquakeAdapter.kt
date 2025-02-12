@@ -21,7 +21,8 @@ class EarthquakeAdapter (var earthquakeList: List<Feature>) :
         val textViewlocation: TextView
         val textViewTime: TextView
         // to enable clicking on an item
-        //var layout: ConstraintLayout
+        //TODO: add the code for the layout
+        //var layoutEarthquake: layout
 
         init{
             textViewMagnitude = view.findViewById(R.id.textView_earthquake_magnitude)
