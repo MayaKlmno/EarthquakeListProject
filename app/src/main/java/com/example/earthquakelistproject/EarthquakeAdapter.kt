@@ -16,14 +16,14 @@ class EarthquakeAdapter (var earthquakeList: List<Feature>) :
      * (custom ViewHolder)
      */
 
-    //TODO: put all of the widgets and wire them
+    //put all of the widgets and wire them
     class ViewHolder(view: View) : RecyclerView.ViewHolder(view) {
         val textViewMagnitude: TextView
         val textViewlocation: TextView
         val textViewTime: TextView
 
         // to enable clicking on an item
-        //TODO: add the code for the layout
+        // add the code for the layout
         var layoutEarthquake: ConstraintLayout
 
         init {
@@ -81,7 +81,7 @@ class EarthquakeAdapter (var earthquakeList: List<Feature>) :
                     )
                 )
                 viewHolder.textViewMagnitude.setCompoundDrawablesRelativeWithIntrinsicBounds(
-                    0,
+                    R.drawable.baseline_error_outline_24,
                     0,
                     0,
                     0
@@ -93,6 +93,12 @@ class EarthquakeAdapter (var earthquakeList: List<Feature>) :
                         R.color.large,
                         context.theme
                     )
+                )
+                viewHolder.textViewMagnitude.setCompoundDrawablesRelativeWithIntrinsicBounds(
+                    R.drawable.baseline_error_24,
+                    0,
+                    0,
+                    0
                 )
             }
             2.5 < earthquakeList[position].properties.mag && earthquakeList[position].properties.mag < 4.6 -> {
