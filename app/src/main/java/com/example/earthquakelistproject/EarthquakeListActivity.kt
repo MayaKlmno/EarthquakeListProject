@@ -20,7 +20,7 @@ class EarthquakeListActivity : AppCompatActivity() {
     private lateinit var adapter: EarthquakeAdapter
 
     companion object{
-        val TAG = "HeroListActivity"
+        val TAG = "EarthquakeListActivity"
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -28,6 +28,16 @@ class EarthquakeListActivity : AppCompatActivity() {
 
         binding = ActivityEarthquakeListBinding.inflate(layoutInflater)
         setContentView(binding.root)
+
+        /*
+        var gson = Gson()
+        val inputStream = resources.openRawResource(R.raw.earthquake)
+        val jsonString = inputStream.bufferedReader().use {
+            it.readText()
+        }
+
+         */
+
 
 
         // create our service object

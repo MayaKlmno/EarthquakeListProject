@@ -1,5 +1,6 @@
 package com.example.earthquakelistproject
 
+import android.content.Intent
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -22,13 +23,13 @@ class EarthquakeAdapter (var earthquakeList: List<Feature>) :
         val textViewTime: TextView
         // to enable clicking on an item
         //TODO: add the code for the layout
-        //var layoutEarthquake: layout
+        var layoutEarthquake: ConstraintLayout
 
         init{
             textViewMagnitude = view.findViewById(R.id.textView_earthquake_magnitude)
             textViewlocation = view.findViewById(R.id.textView_earthquake_location)
             textViewTime = view.findViewById(R.id.textView_earthquake_date)
-            //layout = view.findViewById(R.id.)
+            layoutEarthquake = view.findViewById(R.id.layout_earthquake)
         }
     }
 
@@ -50,8 +51,17 @@ class EarthquakeAdapter (var earthquakeList: List<Feature>) :
     override fun onBindViewHolder(viewHolder: ViewHolder, position: Int) {
         // get elements from your dataset at this position
         // and replace the contents of the view with that element
-        viewHolder.textViewMagnitude.text = earthquakeList[position].toString()
+        //earthquakeList[position].properties.
+        viewHolder.textViewMagnitude.text = earthquakeList[position].properties.mag.toString()
+        viewHolder.textViewTime.text = earthquakeList[position].properties.time.toString()
+        viewHolder.textViewlocation.text = earthquakeList[position].properties.place
 
+        viewHolder.layoutEarthquake.setOnClickListener{
+            val context = viewHolder.layoutEarthquake.context
+            val detailIntent = Intent(context, EarthquakeListActivity::class.java)
+            detailIntent.putExtra(EarthquakeListActivity.TAG, earthquakeList[position])
+            context.startActivity(detailIntent)
+        }
 
         // Example Code:
         // This is the code like not the specific code, but you have to tweak it
