@@ -69,7 +69,6 @@ class EarthquakeListActivity : AppCompatActivity() {
                     supportActionBar?.title = "Earthquake App"
                     supportActionBar?.subtitle = response.body()?.metadata?.title
                 }
-
                  */
 
 

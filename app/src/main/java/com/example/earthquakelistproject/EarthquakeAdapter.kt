@@ -17,15 +17,16 @@ class EarthquakeAdapter (var earthquakeList: List<Feature>) :
      */
 
     //TODO: put all of the widgets and wire them
-    class ViewHolder(view: View) : RecyclerView.ViewHolder(view){
+    class ViewHolder(view: View) : RecyclerView.ViewHolder(view) {
         val textViewMagnitude: TextView
         val textViewlocation: TextView
         val textViewTime: TextView
+
         // to enable clicking on an item
         //TODO: add the code for the layout
         var layoutEarthquake: ConstraintLayout
 
-        init{
+        init {
             textViewMagnitude = view.findViewById(R.id.textView_earthquake_magnitude)
             textViewlocation = view.findViewById(R.id.textView_earthquake_location)
             textViewTime = view.findViewById(R.id.textView_earthquake_date)
@@ -35,9 +36,9 @@ class EarthquakeAdapter (var earthquakeList: List<Feature>) :
 
     // create new views (invoked by the layout manager)
     // this is where you choose the layout to use (item_hero.xml)
-    override fun onCreateViewHolder(viewGroup: ViewGroup, viewType: Int): ViewHolder{
+    override fun onCreateViewHolder(viewGroup: ViewGroup, viewType: Int): ViewHolder {
         val view = LayoutInflater.from(viewGroup.context)
-            .inflate(R.layout.item_earthquake, viewGroup, false )
+            .inflate(R.layout.item_earthquake, viewGroup, false)
         return ViewHolder(view)
     }
 
@@ -56,8 +57,9 @@ class EarthquakeAdapter (var earthquakeList: List<Feature>) :
         viewHolder.textViewTime.text = earthquakeList[position].properties.time.toString()
         viewHolder.textViewlocation.text = earthquakeList[position].properties.place
 
-        viewHolder.layoutEarthquake.setOnClickListener{
-            val context = viewHolder.layoutEarthquake.context
+        val context = viewHolder.layoutEarthquake.context
+
+        viewHolder.layoutEarthquake.setOnClickListener {
             val detailIntent = Intent(context, EarthquakeListActivity::class.java)
             detailIntent.putExtra(EarthquakeListActivity.TAG, earthquakeList[position])
             context.startActivity(detailIntent)
@@ -66,17 +68,50 @@ class EarthquakeAdapter (var earthquakeList: List<Feature>) :
         // Example Code:
         // This is the code like not the specific code, but you have to tweak it
         // you can keep on using the .thenBy{} and keep on like comparing it
-            // over and over and over again
+        // over and over and over again
         //adapter.dataset = adapter.dataSet.sortedWith(compareBy<Feature> {it.properties.title}.thenBy{it.properties.time})
 
 
-        /*
         when {
-            magnitude < 6.5 -> {
-                 holder.magTextView.setTextColor(context.resources.getColor(R.color.significant, context.theme))
-                 holder.magTextView.setCompoundDrawablesRelativeWithIntrinsicBounds(0, 0 ,0 ,0)
+            earthquakeList[position].properties.mag > 6.5 -> {
+                viewHolder.textViewMagnitude.setTextColor(
+                    context.resources.getColor(
+                        R.color.significant,
+                        context.theme
+                    )
+                )
+                viewHolder.textViewMagnitude.setCompoundDrawablesRelativeWithIntrinsicBounds(
+                    0,
+                    0,
+                    0,
+                    0
+                )
             }
-        */
-    }
+            4.6 < earthquakeList[position].properties.mag  && earthquakeList[position].properties.mag < 6.5 -> {
+                viewHolder.textViewMagnitude.setTextColor(
+                    context.resources.getColor(
+                        R.color.large,
+                        context.theme
+                    )
+                )
+            }
+            2.5 < earthquakeList[position].properties.mag && earthquakeList[position].properties.mag < 4.6 -> {
+                viewHolder.textViewMagnitude.setTextColor(
+                    context.resources.getColor(
+                        R.color.moderate,
+                        context.theme
+                    )
+                )
+            }
+            1.0 < earthquakeList[position].properties.mag && earthquakeList[position].properties.mag < 2.5 -> {
+                viewHolder.textViewMagnitude.setTextColor(
+                    context.resources.getColor(
+                        R.color.small,
+                        context.theme
+                    )
+                )
+            }
+        }
 
+    }
 }
