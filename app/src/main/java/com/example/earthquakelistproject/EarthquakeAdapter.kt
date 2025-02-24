@@ -60,10 +60,12 @@ class EarthquakeAdapter (var earthquakeList: List<Feature>) :
         val context = viewHolder.layoutEarthquake.context
 
         viewHolder.layoutEarthquake.setOnClickListener {
-            val detailIntent = Intent(context, EarthquakeListActivity::class.java)
-            detailIntent.putExtra(EarthquakeListActivity.TAG, earthquakeList[position])
+            val detailIntent = Intent(context, EarthquakeMapActivity::class.java)
+            detailIntent.putExtra(EarthquakeMapActivity.EXTEA_FEATURE, earthquakeList[position])
             context.startActivity(detailIntent)
         }
+
+        //viewHolder.layoutEarthquake.setOnClickListener{}
 
         // Example Code:
         // This is the code like not the specific code, but you have to tweak it

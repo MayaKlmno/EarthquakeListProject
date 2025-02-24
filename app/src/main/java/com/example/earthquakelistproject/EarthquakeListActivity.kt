@@ -2,6 +2,9 @@ package com.example.earthquakelistproject
 
 import android.os.Bundle
 import android.util.Log
+import android.view.Menu
+import android.view.MenuInflater
+import android.view.MenuItem
 import android.view.inputmethod.InputBinding
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.RecyclerView
@@ -37,8 +40,6 @@ class EarthquakeListActivity : AppCompatActivity() {
         }
 
          */
-
-
 
         // create our service object
         val earthquakeService = RetrofitHelper.getInstance().create(EarthquakeService::class.java)
@@ -78,11 +79,26 @@ class EarthquakeListActivity : AppCompatActivity() {
                 Log.d("EarthquakeList", "OnFailure: ${t.message}") // similar to the soundboards
             }
 
-
-
         })
         // if you try creating your adapter here, we can't guarantee that the network call has finished
         // so the list might be empty
+    }
 
+    override fun onCreateOptionsMenu(menu: Menu): Boolean {
+        val inflater: MenuInflater = menuInflater
+        inflater.inflate(R.menu.menu_earthquakelist, menu)
+        return true
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        // Handle item selection.
+        return when (item.itemId) {
+            R.id.sort_by_magnitude -> {
+                adapter.earthquakeList = adapter.earthquakeList.sortedBy {it.properties.mag} // or .sorted() for natural order
+                adapter.notifyDataSetChanged()
+                true
+            }
+            else -> super.onOptionsItemSelected(item)
+        }
     }
 }

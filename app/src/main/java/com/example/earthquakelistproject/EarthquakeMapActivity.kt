@@ -18,10 +18,14 @@ import org.osmdroid.views.MapView
 import java.util.ArrayList
 
 class EarthquakeMapActivity: AppCompatActivity() {
+    companion object{
+        val EXTEA_FEATURE = "feature"
+    }
     private val REQUEST_PERMISSIONS_REQUEST_CODE = 1
     private lateinit var map : MapView
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+
 
         //handle permissions first, before map is created. not depicted here
 
