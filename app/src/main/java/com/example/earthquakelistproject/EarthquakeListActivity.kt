@@ -6,6 +6,7 @@ import android.view.Menu
 import android.view.MenuInflater
 import android.view.MenuItem
 import android.view.inputmethod.InputBinding
+import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.RecyclerView
 import com.example.earthquakelistproject.databinding.ActivityEarthquakeListBinding
@@ -32,6 +33,7 @@ class EarthquakeListActivity : AppCompatActivity() {
         binding = ActivityEarthquakeListBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
+        enableEdgeToEdge()
         /*
         var gson = Gson()
         val inputStream = resources.openRawResource(R.raw.earthquake)
@@ -59,10 +61,10 @@ class EarthquakeListActivity : AppCompatActivity() {
                 // if you want to see the json that came back --> response.raw()
                 val earthquake = response.body()!!
                 adapter = EarthquakeAdapter(earthquake.features)
-
                 binding.recyclerViewEarthquakeListEarthquakes.adapter = adapter
-
                 binding.recyclerViewEarthquakeListEarthquakes.layoutManager = LinearLayoutManager(this@EarthquakeListActivity)
+
+
 
                 /*
                 // Naming the action bar
@@ -90,9 +92,14 @@ class EarthquakeListActivity : AppCompatActivity() {
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         // Handle item selection.
         return when (item.itemId) {
-            //TODO: Make sure that this is not and error and add more different sorting s
+            //TODO: Check to see if when you sort by mag, you want it to be smalles --> big or big --> small
             R.id.sort_by_magnitude -> {
                 adapter.earthquakeList = adapter.earthquakeList.sortedBy {it.properties.mag} // or .sorted() for natural order
+                adapter.notifyDataSetChanged()
+                true
+            }
+            R.id.sort_by_recent -> {
+                adapter.earthquakeList = adapter.earthquakeList.sortedBy { it.properties.time }
                 adapter.notifyDataSetChanged()
                 true
             }

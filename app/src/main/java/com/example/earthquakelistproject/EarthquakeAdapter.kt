@@ -74,6 +74,12 @@ class EarthquakeAdapter (var earthquakeList: List<Feature>) :
         //adapter.dataset = adapter.dataSet.sortedWith(compareBy<Feature> {it.properties.title}.thenBy{it.properties.time})
 
 
+        /*
+        if (earthquakeList[position].properties.mag < 0){
+            earthquakeList.remove()
+        }
+         */
+
         when {
             earthquakeList[position].properties.mag > 6.5 -> {
                 viewHolder.textViewMagnitude.setTextColor(

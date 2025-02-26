@@ -5,4 +5,7 @@
 
     <item android:id="@+id/sort_by_magnitude"
         android:title="Sort by Magnitude"/>
+
+    <item android:id="@+id/sort_by_recent"
+        android:title="Sort by Recent" />
 </menu>
