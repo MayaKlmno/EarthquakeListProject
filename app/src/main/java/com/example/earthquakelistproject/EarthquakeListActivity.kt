@@ -71,10 +71,7 @@ class EarthquakeListActivity : AppCompatActivity() {
                     supportActionBar?.subtitle = response.body()?.metadata?.title
                 }
                  */
-
-
             }
-
             override fun onFailure(call: Call<FeatureCollection>, t: Throwable) {
                 Log.d("EarthquakeList", "OnFailure: ${t.message}") // similar to the soundboards
             }
@@ -93,6 +90,7 @@ class EarthquakeListActivity : AppCompatActivity() {
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         // Handle item selection.
         return when (item.itemId) {
+            //TODO: Make sure that this is not and error and add more different sorting s
             R.id.sort_by_magnitude -> {
                 adapter.earthquakeList = adapter.earthquakeList.sortedBy {it.properties.mag} // or .sorted() for natural order
                 adapter.notifyDataSetChanged()

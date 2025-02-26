@@ -120,6 +120,5 @@ class EarthquakeAdapter (var earthquakeList: List<Feature>) :
                 )
             }
         }
-
     }
 }
