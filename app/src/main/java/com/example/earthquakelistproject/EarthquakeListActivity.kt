@@ -60,10 +60,9 @@ class EarthquakeListActivity : AppCompatActivity() {
                 response.body() //--> gives you the actual data (in this case the FeatureCollection)
                 // if you want to see the json that came back --> response.raw()
                 val earthquake = response.body()!!
-                adapter = EarthquakeAdapter(earthquake.features)
+                adapter = EarthquakeAdapter(earthquake.features.filter{it.properties.mag > 1.0})
                 binding.recyclerViewEarthquakeListEarthquakes.adapter = adapter
                 binding.recyclerViewEarthquakeListEarthquakes.layoutManager = LinearLayoutManager(this@EarthquakeListActivity)
-
 
 
                 /*
@@ -73,6 +72,7 @@ class EarthquakeListActivity : AppCompatActivity() {
                     supportActionBar?.subtitle = response.body()?.metadata?.title
                 }
                  */
+
             }
             override fun onFailure(call: Call<FeatureCollection>, t: Throwable) {
                 Log.d("EarthquakeList", "OnFailure: ${t.message}") // similar to the soundboards
