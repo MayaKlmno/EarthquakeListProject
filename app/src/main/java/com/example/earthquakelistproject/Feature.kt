@@ -7,5 +7,5 @@ import kotlinx.parcelize.Parcelize
 @Parcelize
 data class Feature(
     var properties: Properties,
-    var Geometry: Geometry
+    var geometry: Geometry
 ):Parcelable

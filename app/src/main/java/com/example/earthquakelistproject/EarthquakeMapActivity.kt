@@ -1,37 +1,34 @@
 package com.example.earthquakelistproject
 
-import android.Manifest
-import android.content.Context
-import android.content.pm.PackageManager
 import android.os.Bundle
 import android.preference.PreferenceManager
-
 import androidx.appcompat.app.AppCompatActivity
-import androidx.core.app.ActivityCompat
-import androidx.core.content.ContextCompat
-//import com.niels_ole.customtileserver.R
-
 import org.osmdroid.config.Configuration.*
 import org.osmdroid.tileprovider.tilesource.TileSourceFactory
+import org.osmdroid.util.GeoPoint
 import org.osmdroid.views.MapView
+import org.osmdroid.views.overlay.Marker
 
-import java.util.ArrayList
 
 class EarthquakeMapActivity: AppCompatActivity() {
     companion object{
         val EXTEA_FEATURE = "feature"
+        val TAG = "EarthquakeMapActivity"
     }
-    private val REQUEST_PERMISSIONS_REQUEST_CODE = 1
+    //private val REQUEST_PERMISSIONS_REQUEST_CODE = 1
     private lateinit var map : MapView
+
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-
+        //inflate and create the map
+        setContentView(R.layout.menu_earthquake_map)
 
         //handle permissions first, before map is created. not depicted here
 
         //load/initialize the osmdroid configuration, this can be done
         // This won't work unless you have imported this: org.osmdroid.config.Configuration.*
-        getInstance().load(this, PreferenceManager.getDefaultSharedPreferences(this))
+        ////getInstance().load(this, PreferenceManager.getDefaultSharedPreferences(this))
         //setting this before the layout is inflated is a good idea
         //it 'should' ensure that the map has a writable location for the map cache, even without permissions
         //if no tiles are displayed, you can try overriding the cache path using Configuration.getInstance().setCachePath
@@ -39,11 +36,26 @@ class EarthquakeMapActivity: AppCompatActivity() {
         //note, the load method also sets the HTTP User Agent to your application's package name, if you abuse osm's
         //tile servers will get you banned based on this string.
 
-        //inflate and create the map
-        setContentView(R.layout.menu_earthquake_map)
+
+
 
         map = findViewById<MapView>(R.id.map)
         map.setTileSource(TileSourceFactory.MAPNIK)
+        val earthquake = intent.getParcelableExtra<Feature>(EXTEA_FEATURE)
+
+        val mapController = map.controller
+        mapController.setZoom(11)
+        val startPoint = GeoPoint(48.853, 2.2944);
+        mapController.setCenter(startPoint)
+
+
+        getInstance().load(this, PreferenceManager.getDefaultSharedPreferences(this))
+
+        val startMarker = Marker(map)
+        startMarker.position= startPoint
+        startMarker.setAnchor(Marker.ANCHOR_CENTER, Marker.ANCHOR_BOTTOM)
+        startMarker.title = earthquake?.properties?.place.toString()
+        map.getOverlays().add(startMarker)
     }
 
     override fun onResume() {
@@ -64,6 +76,7 @@ class EarthquakeMapActivity: AppCompatActivity() {
         map.onPause()  //needed for compass, my location overlays, v6.0.0 and up
     }
 
+    /*
     override fun onRequestPermissionsResult(requestCode: Int, permissions: Array<out String>, grantResults: IntArray) {
         super.onRequestPermissionsResult(requestCode, permissions, grantResults)
         val permissionsToRequest = ArrayList<String>()
@@ -79,6 +92,8 @@ class EarthquakeMapActivity: AppCompatActivity() {
                 REQUEST_PERMISSIONS_REQUEST_CODE)
         }
     }
+
+     */
 
 
     /*private fun requestPermissionsIfNecessary(String[] permissions) {
