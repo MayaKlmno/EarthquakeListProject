@@ -7,6 +7,7 @@ import android.view.MenuInflater
 import android.view.MenuItem
 import android.view.inputmethod.InputBinding
 import androidx.activity.enableEdgeToEdge
+import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
@@ -99,7 +100,6 @@ class EarthquakeListActivity : AppCompatActivity() {
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         // Handle item selection.
         return when (item.itemId) {
-            //TODO: Check to see if when you sort by mag, you want it to be smalles --> big or big --> small
             R.id.sort_by_magnitude -> {
                 adapter.earthquakeList = adapter.earthquakeList.sortedBy {-it.properties.mag} // or .sorted() for natural order
                 adapter.notifyDataSetChanged()
@@ -110,7 +110,21 @@ class EarthquakeListActivity : AppCompatActivity() {
                 adapter.notifyDataSetChanged()
                 true
             }
+            R.id.menu_legend -> {
+                showAlertDialog()
+                true
+            }
             else -> super.onOptionsItemSelected(item)
         }
+    }
+    private fun showAlertDialog(){
+        val builder = AlertDialog.Builder(this)
+        builder.setTitle("Legend").setMessage("Color - Magnitude\n" +
+                "Purple - magnitude > 6.5\n" +
+                "Red - 4.6 < magnitude < 6.5\n" +
+                "Orange - 2.5 < magnitude < 4.6\n" +
+                "Blue - 1.0 < magnitude < 2.5")
+        val alertDialog: AlertDialog = builder.create()
+        alertDialog.show()
     }
 }

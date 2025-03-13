@@ -8,4 +8,11 @@
 
     <item android:id="@+id/sort_by_recent"
         android:title="Sort by Recent" />
+
+    <item
+        android:id="@+id/menu_legend"
+        android:icon="@drawable/baseline_question_mark"
+        android:title="Legend"
+        app:showAsAction="ifRoom"
+        />
 </menu>
