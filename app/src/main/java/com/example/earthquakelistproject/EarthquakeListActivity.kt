@@ -119,11 +119,13 @@ class EarthquakeListActivity : AppCompatActivity() {
     }
     private fun showAlertDialog(){
         val builder = AlertDialog.Builder(this)
-        builder.setTitle("Legend").setMessage("Color - Magnitude\n" +
-                "Purple - magnitude > 6.5\n" +
-                "Red - 4.6 < magnitude < 6.5\n" +
-                "Orange - 2.5 < magnitude < 4.6\n" +
-                "Blue - 1.0 < magnitude < 2.5")
+        builder.setTitle("Legend").setMessage(
+                "Color   --  Corresponding Magnitude\n" +
+                "\n" +
+                "Purple  --  Magnitude > 6.5\n" +
+                "Red     --  4.6 < Magnitude < 6.5\n" +
+                "Orange  --  2.5 < Magnitude < 4.6\n" +
+                "Blue    --  1.0 < Magnitude < 2.5")
         val alertDialog: AlertDialog = builder.create()
         alertDialog.show()
     }
