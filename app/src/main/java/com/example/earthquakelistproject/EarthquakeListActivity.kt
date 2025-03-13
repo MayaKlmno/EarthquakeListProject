@@ -8,6 +8,8 @@ import android.view.MenuItem
 import android.view.inputmethod.InputBinding
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.view.ViewCompat
+import androidx.core.view.WindowInsetsCompat
 import androidx.recyclerview.widget.RecyclerView
 import com.example.earthquakelistproject.databinding.ActivityEarthquakeListBinding
 import com.google.gson.Gson
@@ -29,11 +31,16 @@ class EarthquakeListActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-
+        enableEdgeToEdge()
         binding = ActivityEarthquakeListBinding.inflate(layoutInflater)
         setContentView(binding.root)
+        ViewCompat.setOnApplyWindowInsetsListener(binding.root) { v, insets ->
+            val systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars())
+            v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom)
+            insets
+        }
 
-        enableEdgeToEdge()
+
         /*
         var gson = Gson()
         val inputStream = resources.openRawResource(R.raw.earthquake)
@@ -99,7 +106,7 @@ class EarthquakeListActivity : AppCompatActivity() {
                 true
             }
             R.id.sort_by_recent -> {
-                adapter.earthquakeList = adapter.earthquakeList.sortedBy { it.properties.time }
+                adapter.earthquakeList = adapter.earthquakeList.sortedBy {-it.properties.time}
                 adapter.notifyDataSetChanged()
                 true
             }
