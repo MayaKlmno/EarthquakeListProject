@@ -45,7 +45,7 @@ class EarthquakeMapActivity: AppCompatActivity() {
 
         val mapController = map.controller
         mapController.setZoom(11)
-        val startPoint = GeoPoint(48.853, 2.2944);
+        val startPoint = GeoPoint(earthquake?.geometry?.coordinates?.get(1)!!, earthquake.geometry.coordinates.get(0));
         mapController.setCenter(startPoint)
 
 
