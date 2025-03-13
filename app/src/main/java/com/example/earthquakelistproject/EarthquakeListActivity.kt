@@ -101,7 +101,7 @@ class EarthquakeListActivity : AppCompatActivity() {
         return when (item.itemId) {
             //TODO: Check to see if when you sort by mag, you want it to be smalles --> big or big --> small
             R.id.sort_by_magnitude -> {
-                adapter.earthquakeList = adapter.earthquakeList.sortedBy {it.properties.mag} // or .sorted() for natural order
+                adapter.earthquakeList = adapter.earthquakeList.sortedBy {-it.properties.mag} // or .sorted() for natural order
                 adapter.notifyDataSetChanged()
                 true
             }
