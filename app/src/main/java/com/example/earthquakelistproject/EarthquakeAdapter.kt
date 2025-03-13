@@ -133,6 +133,7 @@ class EarthquakeAdapter (var earthquakeList: List<Feature>) :
                         context.theme
                     )
                 )
+                viewHolder.textViewMagnitude.setCompoundDrawablesWithIntrinsicBounds(0,0,0,0)
             }
             1.0 < earthquakeList[position].properties.mag && earthquakeList[position].properties.mag < 2.5 -> {
                 viewHolder.textViewMagnitude.setTextColor(
@@ -141,6 +142,7 @@ class EarthquakeAdapter (var earthquakeList: List<Feature>) :
                         context.theme
                     )
                 )
+                viewHolder.textViewMagnitude.setCompoundDrawablesWithIntrinsicBounds(0,0,0,0)
             }
         }
     }
