@@ -89,9 +89,8 @@ class EarthquakeAdapter (var earthquakeList: List<Feature>) :
         // you can keep on using the .thenBy{} and keep on like comparing it
         // over and over and over again
         //adapter.dataset = adapter.dataSet.sortedWith(compareBy<Feature> {it.properties.title}.thenBy{it.properties.time})
-
-
         /*
+        // my initial attempt to remove magnitudes less than 0
         if (earthquakeList[position].properties.mag < 0){
             earthquakeList.remove()
         }
