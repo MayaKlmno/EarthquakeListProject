@@ -61,7 +61,7 @@ class EarthquakeAdapter (var earthquakeList: List<Feature>) :
         val entry = earthquakeList[position]
         val context = viewHolder.textViewMagnitude.context
 
-        viewHolder.textViewMagnitude.text = earthquakeList[position].properties.mag.toString()
+        viewHolder.textViewMagnitude.text = earthquakeList[position].properties.mag.toString().substring(0,3)
         viewHolder.textViewTime.text = earthquakeList[position].properties.time.toString()
         viewHolder.textViewlocation.text = earthquakeList[position].properties.place
 
@@ -97,7 +97,6 @@ class EarthquakeAdapter (var earthquakeList: List<Feature>) :
         }
          */
 
-        earthquakeList[position].properties.mag = Math.round(earthquakeList[position].properties.mag *10.0) / 10.0
         when {
             earthquakeList[position].properties.mag > 6.5 -> {
                 viewHolder.textViewMagnitude.setTextColor(
@@ -112,7 +111,6 @@ class EarthquakeAdapter (var earthquakeList: List<Feature>) :
                     0,
                     0
                 )
-                earthquakeList[position].properties.mag = Math.round(earthquakeList[position].properties.mag *10.0) / 10.0
             }
             4.6 < earthquakeList[position].properties.mag  && earthquakeList[position].properties.mag < 6.5 -> {
                 viewHolder.textViewMagnitude.setTextColor(
@@ -127,7 +125,6 @@ class EarthquakeAdapter (var earthquakeList: List<Feature>) :
                     0,
                     0
                 )
-                earthquakeList[position].properties.mag = Math.round(earthquakeList[position].properties.mag *10.0) / 10.0
             }
             2.5 < earthquakeList[position].properties.mag && earthquakeList[position].properties.mag < 4.6 -> {
                 viewHolder.textViewMagnitude.setTextColor(
@@ -136,7 +133,6 @@ class EarthquakeAdapter (var earthquakeList: List<Feature>) :
                         context.theme
                     )
                 )
-                earthquakeList[position].properties.mag = Math.round(earthquakeList[position].properties.mag *10.0) / 10.0
             }
             1.0 < earthquakeList[position].properties.mag && earthquakeList[position].properties.mag < 2.5 -> {
                 viewHolder.textViewMagnitude.setTextColor(
@@ -145,7 +141,6 @@ class EarthquakeAdapter (var earthquakeList: List<Feature>) :
                         context.theme
                     )
                 )
-                earthquakeList[position].properties.mag = Math.round(earthquakeList[position].properties.mag *10.0) / 10.0
             }
         }
     }
