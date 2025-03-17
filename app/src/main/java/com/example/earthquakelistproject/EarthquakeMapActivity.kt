@@ -58,6 +58,8 @@ class EarthquakeMapActivity: AppCompatActivity() {
         startMarker.setAnchor(Marker.ANCHOR_CENTER, Marker.ANCHOR_BOTTOM)
         startMarker.title = earthquake?.properties?.place.toString()
         map.getOverlays().add(startMarker)
+        supportActionBar!!.title = "${earthquake.properties.place}"
+        supportActionBar!!.subtitle = "${earthquake.properties.url}"
     }
 
     override fun onResume() {
